@@ -1,0 +1,83 @@
+General Description
+___________________
+
+This directory contains the source code for bedGraphToBed9
+
+bedGraphToBed9 is free software.  See the file COPYING for copying conditions.
+bedGraphToBed9 is copyright by the Centro Nacional de Analisis Genomico.(CNAG).
+
+bedGraphToBed9 transforms a bedgraph file (http://genome.ucsc.edu/goldenpath/help/bedgraph.html) to
+a bed file with 9 columns where the last column is and rgb color coordinate. The color is selected 
+from a set of 10 rgb colors and acoording to its signal value and the range of signals.
+
+Bedgraph:
+chr	start	end	signal
+
+Range = maximum signal value - minimum signal value
+
+Number of color = ( signal / Range) * 10 
+
+The final goal of this application is to create a bed file ready to be a track of a Heatmap to 
+be viewed on a UCSC genome borwser instance.
+
+
+Downloading
+-----------
+
+bedGraphToBed can be obtained from:
+	https://github.com/MarcosFernandez/heatMapUcsc/
+
+
+Compile
+_______
+
+You can compile the source code like:
+
+(Release)
+1.Compile
+g++ -O3 -Wall -c -fmessage-length=0 -MMD -MP -MF"bedGraphToBed9.d" -MT"bedGraphToBed9.d" -o "bedGraphToBed9.o" "bedGraphToBed9.cpp"
+2.Link
+g++  -o "bedGraphToBed9"  bedGraphToBed9.o
+
+(Debug) Just for testing.
+1.Compile
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"bedGraphToBed9.d" -MT"bedGraphToBed9.d" -o "bedGraphToBed9.o" "bedGraphToBed9.cpp"
+2.Link 
+g++  -o "bedGraphToBed9"  bedGraphToBed9.o
+
+This code was compiled using gcc version 4.4.6 over 64 bits Redhat Linux and gcc 4.6.3 over 32 bits 
+Ubuntu distribution.
+
+
+Examples
+________
+
+bedGraphToBed9 example.graph.bed example.heatmap.bed example.colors 1 10
+
+Where:
+example.graph.bed	INPUT bedgraph file
+example.heatmap.bed     OUTPUT bed file 9 fields
+example.colors          List of RGB coordinates
+1                       Minimum signal value expected 
+10                      Maximum signal value expected
+
+
+-------------------------------------------------------------------------------
+Copyright (C) 2009-2015 Centro Nacional Análisis Genómico (CNAG).
+
+bedGraphToBed9 is free software; you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any later
+version.
+
+bedGraphToBed9 is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+
+
+
